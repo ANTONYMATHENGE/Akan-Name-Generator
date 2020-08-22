@@ -1,5 +1,5 @@
 body {
-    /* background-color: rgb(216, 31, 31); */
+    background-color: #6892a1;
     margin: 0px;
     padding: 0px;
 }
@@ -17,8 +17,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    background-color: whitesmoke;
-    box-shadow: 2px 2px 12px grey;
+    background-color: #C6DBF0;
+    box-shadow: 2px 2px 12px #A0C4E2;
     padding: 0px 5%;
 }
 
@@ -32,4 +32,22 @@ nav ul li a {
     color: black;
     font-size: 15px;
     font-weight: 700;
+}
+
+#first-col {
+    font-family: Calibri;
+    font-weight: bold;
+    color: black;
+    font-size: 22px;
+    background-color: #6892a1;
+    /* display: flex; */
+    align-items: center;
+}
+
+#second-col {
+    font-family: Calibri;
+    font-weight: bold;
+    color: black;
+    font-size: 40px;
+    background-color: #85C7DE;
 }
