@@ -1,40 +1,31 @@
-$(document).ready(function() {
-    $("#myBirthDate").mask("99/99/9999");
-});
+function day() {
+    var DD = parseFloat(document.getElementById("day").value);
 
+    var MM = parseFloat(document.getElementById("month").value);
+    var YY = parseFloat(document.getElementById("year").value);
+    var vv = DD == 0;
+    var CC = (YY - 1) / 100 + 1;
 
-function getAkanName() {
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var maleAkanNames = ["Kwasi", "Kwadwo", "Kwabena", "Kwaku", "Yaw", "Kofi", "Kwame"]
-    var femaleAkanNames = ["Akosua", "Adwoa", "Abenaa", "Akua", "Yaa", "Afua", "Ama"]
-    var myBirthday = document.getElementById("myBirthDate").value;
-    var myGender = document.getElementsByName("gender");
-    var dateOfBirth = new Date(myBirthday);
-    var dayOfTheWeek = dateOfBirth.getDay();
-    if (myBirthday === "") {
-        document.getElementById('message').innerHTML = "<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">x</button><strong>Oh snap!</strong> You Didn't Submit a Valid Date!</div>";
-        $('#message').addClass("animated shake");
+    var weekDay = (((CC / 4) - 2 * CC - 1) + ((5 * YY / 4)) + ((26 * (MM + 1) / 10)) + DD) % 7;
+    console.log(weekDay);
+    document.getElementById("result").innerHTML = Math.round(weekDay);
+
+    var maleNames = ["kwasi", "kwadwo", "kwabena", "kwaku", "yaw", "kofi", " kwame"];
+    var femaleNames = ["Akosua", "Adwoa", "Abenaa", "Akua", "Yaa", "Afua", "Ama"];
+    var choice = document.getElementById("select").value;
+    if ((choice === "male" && (DD > 0 && DD <= 31) && (MM > 0 && MM <= 12) && YY >= 1)) {
+        console.log(maleNames[Math.round(weekDay)]);
+
+        document.getElementById("akan-name").innerHTML = maleNames[Math.round(weekDay)];
+
+    } else if ((choice == "female" && (DD > 0 && DD <= 31) && (MM > 0 && MM <= 12) && YY >= 1)) {
+        console.log(femaleNames[Math.round(weekDay)]);
+
+        document.getElementById("akan-name").innerHTML = femaleNames[Math.round(weekDay)];
     } else {
-        for (var i = 0; i < myGender.length; i++) {
-            if (myGender[i].checked) {
-                if (myGender[i].value === "Male") {
-                    document.getElementById('message').innerHTML = "<span><i class=\"fa fa-male\"></i></span>&nbsp;&nbsp; Born on a <span>" + days[dayOfTheWeek] + "</span>, Your Akan Name's <span>" + maleAkanNames[dayOfTheWeek] + "</span>";
-                    $('#message span:first-child').addClass("animated fadeInDown");
-                    $('#message span:last-child').addClass("animated fadeInUp");
-                } else {
-                    document.getElementById('message').innerHTML = "<span><i class=\"fa fa-female\"></i></span>&nbsp;&nbsp; Born on a <span>" + days[dayOfTheWeek] + "</span>, Your Akan Name's <span>" + femaleAkanNames[dayOfTheWeek] + "</span>";
-                    $('#message span:first-child').addClass("animated fadeInDown");
-                    $('#message span:last-child').addClass("animated fadeInUp");
-                }
-                break;
-            } else {
-                document.getElementById('message').innerHTML = "<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">x</button><strong>Oh snap!</strong> You Should Select a Gender Too Determine Your Akan Name!</div>";
-                $('#message').addClass("animated shake");
-            }
-        }
+        console.log("invalid input");
+        alert("sorry you'he entered the invalid month or date!")
+        document.getElementById("akan-name").innerHTML = "invalid input";
     }
-}
 
-function clearAkanMessage() {
-    document.getElementById('message').innerHTML = "";
 }
