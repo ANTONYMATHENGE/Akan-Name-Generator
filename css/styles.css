@@ -104,3 +104,7 @@ h1 {
 .jumbotron {
     background-color: yellow;
 }
+
+.flex-container {
+    display: flex;
+}
